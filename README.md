@@ -80,7 +80,7 @@ For example, if your brother wakes up at 6am and takes the dog out and you wake 
 
 Tasks
 | Property      | Type          | Description                        |
-| ------------- |:-------------:| -----:|
+| ------------- |:-------------:| :-----|
 | Time          | DateTime      | Times user wants app to alarm them |
 | Description   | String        | Inputted by user to describe tasks |
 | Title         | String        | Title of task |
