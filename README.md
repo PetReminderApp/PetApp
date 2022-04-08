@@ -68,7 +68,7 @@ For example, if your brother wakes up at 6am and takes the dog out and you wake 
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="WireframeImages/Wireframe%20Pet%20App%201.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
