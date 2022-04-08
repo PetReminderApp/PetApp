@@ -93,6 +93,22 @@ For example, if your brother wakes up at 6am and takes the dog out and you wake 
 | Completed     | Boolean       | Whether the task is complete or not |
 | Repeat        | String        | How often to show the task/notify the user |
 
+#### Pet
+| Property      | Type          | Description                        |
+| ------------- |:-------------:| :-----|
+| Tasks         | Array of Tasks| Tasks for specific Pet |
+| Description   | String        | User inputted details about Pet |
+| Picture       | Image         | Picture of Pet |
+| Name          | String        | Name of Pet |
+| Preferences   | String/Array  | User inputted prefences about pet |
+
+#### User
+| Property      | Type          | Description                        |
+| ------------- |:-------------:| :-----|
+| Pet           | Array of Pets | List of user's pets |
+| Name          | String        | Name of user |
+| Password      | String        | Password of User |
+
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
