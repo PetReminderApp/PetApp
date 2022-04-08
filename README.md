@@ -77,7 +77,16 @@ For example, if your brother wakes up at 6am and takes the dog out and you wake 
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+Tasks
+| Property      | Type          | Description                        |
+| ------------- |:-------------:| -----:|
+| Time          | DateTime      | Times user wants app to alarm them |
+| Description   | String        | Inputted by user to describe tasks |
+| Title         | String        | Title of task |
+| Completed     | Boolean       | Whether the task is complete or not |
+| Repeat        | String        | How often to show the task/notify the user |
+
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
