@@ -67,8 +67,14 @@ For example, if your brother wakes up at 6am and takes the dog out and you wake 
    * [-> Add Friend Screen]
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="WireframeImages/Wireframe%20Pet%20App%201.png" width=600>
+<img src="WireframeImages/Wireframe Pet App 1.png" width=400>
+<img src="WireframeImages/Wireframe Pet App 2.png" width=400>
+<img src="WireframeImages/Wireframe Pet App 3.png" width=400>
+<img src="WireframeImages/Wireframe Pet App 4.png" width=400>
+<img src="WireframeImages/Wireframe Pet App 5.png" width=400>
+<img src="WireframeImages/Wireframe Pet App 6.png" width=400>
+<img src="WireframeImages/Wireframe Pet App 7.png" width=400>
+<img src="WireframeImages/Wireframe Pet App 8.png" width=400>
 
 ### [BONUS] Digital Wireframes & Mockups
 
