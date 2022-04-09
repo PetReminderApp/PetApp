@@ -96,7 +96,7 @@ For example, if your brother wakes up at 6am and takes the dog out and you wake 
 #### Pet
 | Property      | Type          | Description                        |
 | ------------- |:-------------:| :-----|
-| Tasks         | Array of Tasks| Tasks for specific Pet |
+| Tasks         | Array of Task Pointers| Tasks for specific Pet |
 | Description   | String        | User inputted details about Pet |
 | Picture       | Image         | Picture of Pet |
 | Name          | String        | Name of Pet |
@@ -105,7 +105,7 @@ For example, if your brother wakes up at 6am and takes the dog out and you wake 
 #### User
 | Property      | Type          | Description                        |
 | ------------- |:-------------:| :-----|
-| Pet           | Array of Pets | List of user's pets |
+| Pet           | Array of Pet Pointers | List of user's pets |
 | Name          | String        | Name of user |
 | Password      | String        | Password of User |
 
