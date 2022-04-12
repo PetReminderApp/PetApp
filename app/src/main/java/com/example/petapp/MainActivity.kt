@@ -11,17 +11,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //create Task Object and send to Parse
-        val testTask = ParseObject("Task")
-        testTask.put("title", "titleTest")
-        testTask.put("repeat", "repeatTest")
-        testTask.put("completed", true)
+//        val testTask = ParseObject("Task")
+//        testTask.put("title", "titleTest")
+//        testTask.put("repeat", "repeatTest")
+//        testTask.put("completed", true)
+//
+//        testTask.saveInBackground {
+//            if (it != null){
+//                it.localizedMessage?.let { message -> Log.e("MainActivity", message) }
+//            }else{
+//                Log.d("MainActivity","Object saved.")
+//            }
+//        }
 
-        testTask.saveInBackground {
-            if (it != null){
-                it.localizedMessage?.let { message -> Log.e("MainActivity", message) }
-            }else{
-                Log.d("MainActivity","Object saved.")
-            }
-        }
     }
 }
