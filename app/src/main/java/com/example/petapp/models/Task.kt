@@ -1,4 +1,4 @@
-package com.example.petapp.model
+package com.example.petapp.models
 
 import com.parse.ParseClassName
 import com.parse.ParseFile
