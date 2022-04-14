@@ -1,35 +1,34 @@
 package com.example.petapp.model
 
 import com.parse.ParseClassName
-import com.parse.ParseFile
 import com.parse.ParseObject
-import org.json.JSONArray
+import java.util.*
 
 @ParseClassName("Task")
 class Task : ParseObject() {
 
-    fun getName(): String? {
-        return getString(KEY_NAME)
+    fun getTitle(): String? {
+        return getString(KEY_TITLE)
     }
 
-    fun setName(name: String) {
-        put(KEY_NAME, name)
+    fun setTitle(title: String) {
+        put(KEY_TITLE, title)
     }
 
-    fun getTasks(): JSONArray? {
-        return getJSONArray(KEY_TASKS)
+    fun getCompleted(): Boolean? {
+        return getBoolean(KEY_COMPLETED)
     }
 
-    fun setTasks(tasks: JSONArray) {
-        put(KEY_TASKS, tasks)
+    fun setCompleted(completed: Boolean) {
+        put(KEY_COMPLETED, completed)
     }
 
-    fun getPreferences(): String? {
-        return getString(KEY_PREFERENCES)
+    fun getTime(): Date? {
+        return getDate(KEY_TIME)
     }
 
-    fun setPreferences(preferences: String) {
-        put(KEY_PREFERENCES, preferences)
+    fun setTime(time: Date) {
+        put(KEY_TIME, time)
     }
 
     fun getDescription(): String? {
@@ -40,19 +39,19 @@ class Task : ParseObject() {
         put(KEY_DESCRIPTION, description)
     }
 
-    fun getPicture(): ParseFile? {
-        return getParseFile(KEY_PICTURE)
+    fun getRepeat(): String? {
+        return getString(KEY_REPEAT)
     }
 
-    fun setPicture(picture: ParseFile) {
-        put(KEY_PICTURE, picture)
+    fun setRepeat(repeat: String) {
+        put(KEY_REPEAT, repeat)
     }
 
     companion object {
-        const val KEY_NAME = "name"
-        const val KEY_TASKS = "tasks"
-        const val KEY_PREFERENCES = "preferences"
+        const val KEY_COMPLETED = "completed"
+        const val KEY_TIME = "time"
+        const val KEY_TITLE = "title"
+        const val KEY_REPEAT = "repeat"
         const val KEY_DESCRIPTION = "description"
-        const val KEY_PICTURE = "picture"
     }
 }
