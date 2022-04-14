@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.petapp.fragments.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.parse.ParseObject
@@ -31,21 +32,21 @@ class MainActivity : AppCompatActivity() {
             var fragment: Fragment? = null
 
             //todo setup fragment navigation
-//            when (item.itemId) {
-//                R.id.action_home -> {
-//                    fragment = HomeFragment()
-//                }
+            when (item.itemId) {
+                R.id.action_home -> {
+                    fragment = HomeFragment()
+                }
 //                R.id.action_compose -> {
 //                    fragment = ComposeFragment()
 //                }
 //                R.id.action_profile -> {
 //                    fragment = ProfileFragment()
 //                }
-//            }
-//
-//            if (fragment != null) {
-//                fragmentManager.beginTransaction().replace(R.id.fragment_container_view, fragment).commit()
-//            }
+            }
+
+            if (fragment != null) {
+                fragmentManager.beginTransaction().replace(R.id.fragment_container_view, fragment).commit()
+            }
 
             //Return true to say that we've handled this user interaction
             true

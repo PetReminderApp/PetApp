@@ -47,11 +47,21 @@ class Task : ParseObject() {
         put(KEY_REPEAT, repeat)
     }
 
+    fun getPet(): Pet? {
+        return createWithoutData(Pet::class.java, getParseObject(KEY_PET)?.objectId)
+    }
+//  return ParseObject.createWithoutData(objFeed.class, getParseObject(ParseIdentifier.getFeed()).getObjectId(); }
+
+    fun setPet(pet: Pet) {
+        put(KEY_PET, pet)
+    }
+
     companion object {
         const val KEY_COMPLETED = "completed"
         const val KEY_TIME = "time"
         const val KEY_TITLE = "title"
         const val KEY_REPEAT = "repeat"
         const val KEY_DESCRIPTION = "description"
+        const val KEY_PET = "pet"
     }
 }
