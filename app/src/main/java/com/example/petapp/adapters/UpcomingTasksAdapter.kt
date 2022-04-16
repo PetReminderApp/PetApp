@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.petapp.R
 import com.example.petapp.models.Pet
 import com.example.petapp.models.Task
+import java.text.SimpleDateFormat
 
 private const val TAG = "UpcomingTasksAdapter"
 
@@ -45,11 +46,16 @@ class UpcomingTasksAdapter(
         val tvPetName: TextView
 
         fun bind(task: Task) {
-            tvTaskTitle.text = task.getTitle()
-            tvDeadlineTime.text = task.getTime().toString()
-            tvPetName.text = task.getPet()?.get("name").toString() //todo use KEY_NAME from Pet class
+            val dateFormat = SimpleDateFormat("hh:mm a")
+            val formattedTime = dateFormat.format(task.getTime())
 
-//            Glide.with(itemView.context).load(task.getPet()?.get("image").url).into(ivImage)
+            tvTaskTitle.text = task.getTitle()
+            tvDeadlineTime.text = formattedTime
+            tvPetName.text = task.getPet()?.get(Pet.KEY_NAME).toString()
+
+            Glide.with(itemView.context)
+                .load(task.getPet()?.getPicture()?.url)
+                .into(ivImage)
 
             btMore.setOnClickListener {
                 Log.i(TAG, "clicked more btn")

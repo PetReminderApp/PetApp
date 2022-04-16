@@ -5,7 +5,7 @@ import com.parse.ParseFile
 import com.parse.ParseObject
 
 @ParseClassName("Pet")
-class Pet() : ParseObject() {
+class Pet : ParseObject() {
 
     fun getName() : String? {
         return getString(KEY_NAME)
