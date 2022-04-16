@@ -48,9 +48,8 @@ class Task : ParseObject() {
     }
 
     fun getPet(): Pet? {
-        return createWithoutData(Pet::class.java, getParseObject(KEY_PET)?.objectId)
+        return createWithoutData(Pet::class.java, getParseObject(KEY_PET)?.objectId).fetchIfNeeded()
     }
-//  return ParseObject.createWithoutData(objFeed.class, getParseObject(ParseIdentifier.getFeed()).getObjectId(); }
 
     fun setPet(pet: Pet) {
         put(KEY_PET, pet)

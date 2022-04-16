@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.petapp.R
 import com.example.petapp.models.Pet
 import com.example.petapp.models.Task
@@ -46,9 +47,9 @@ class UpcomingTasksAdapter(
         fun bind(task: Task) {
             tvTaskTitle.text = task.getTitle()
             tvDeadlineTime.text = task.getTime().toString()
-            tvPetName.text = task.getPet()?.fetchIfNeeded<Pet>()?.get("name").toString() //todo use KEY_NAME from Pet class
+            tvPetName.text = task.getPet()?.get("name").toString() //todo use KEY_NAME from Pet class
 
-//            Glide.with(itemView.context).load(post.getImage()?.url).into(ivImage)
+//            Glide.with(itemView.context).load(task.getPet()?.get("image").url).into(ivImage)
 
             btMore.setOnClickListener {
                 Log.i(TAG, "clicked more btn")
