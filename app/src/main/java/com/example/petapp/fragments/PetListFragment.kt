@@ -1,4 +1,4 @@
-package com.example.petapp.fragment
+package com.example.petapp.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -10,18 +10,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petapp.PetAdapter
 import com.example.petapp.R
-import com.example.petapp.model.Pet
+import com.example.petapp.models.Pet
 import com.parse.FindCallback
 import com.parse.ParseException
 import com.parse.ParseQuery
 
 class PetListFragment : Fragment() {
 
-    lateinit var petRecyclerView : RecyclerView
+    lateinit var petRecyclerView: RecyclerView
 
-    lateinit var adapter : PetAdapter
+    lateinit var adapter: PetAdapter
 
-    var userPets : MutableList<Pet> = mutableListOf()
+    var userPets: MutableList<Pet> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,19 +46,22 @@ class PetListFragment : Fragment() {
 
     open fun queryPets() {
 
-        val query : ParseQuery<Pet> = ParseQuery.getQuery(Pet::class.java)
+        val query: ParseQuery<Pet> = ParseQuery.getQuery(Pet::class.java)
 
         query.include(Pet.KEY_NAME)
         query.addDescendingOrder("createdAt")
         query.findInBackground(object : FindCallback<Pet> {
             override fun done(pets: MutableList<Pet>?, e: ParseException?) {
-                if(e != null) {
+                if (e != null) {
                     // something went wrong
                     Log.e(TAG, "Error fetching posts")
                 } else {
                     if (pets != null) {
                         for (pet in pets) {
-                            Log.i(TAG, "Name: " + pet.getName() + " , Description: " + pet.getDescription())
+                            Log.i(
+                                TAG,
+                                "Name: " + pet.getName() + " , Description: " + pet.getDescription()
+                            )
                         }
 
                         userPets.addAll(pets)
