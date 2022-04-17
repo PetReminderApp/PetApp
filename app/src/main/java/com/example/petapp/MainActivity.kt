@@ -58,19 +58,5 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             Toast.makeText(this, "Clicked Fab", Toast.LENGTH_SHORT).show()
         }
-        //create Task Object and send to Parse
-//        val testTask = ParseObject("Task")
-//        testTask.put("title", "titleTest")
-//        testTask.put("repeat", "repeatTest")
-//        testTask.put("completed", true)
-//
-//        testTask.saveInBackground {
-//            if (it != null){
-//                it.localizedMessage?.let { message -> Log.e("MainActivity", message) }
-//            }else{
-//                Log.d("MainActivity","Object saved.")
-//            }
-//        }
-
     }
 }

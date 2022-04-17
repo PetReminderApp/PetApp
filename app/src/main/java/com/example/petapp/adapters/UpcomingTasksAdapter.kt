@@ -46,7 +46,7 @@ class UpcomingTasksAdapter(
         val tvPetName: TextView
 
         fun bind(task: Task) {
-            val dateFormat = SimpleDateFormat("hh:mm a")
+            val dateFormat = SimpleDateFormat("MMMM dd hh:mm a")
             val formattedTime = dateFormat.format(task.getTime())
 
             tvTaskTitle.text = task.getTitle()

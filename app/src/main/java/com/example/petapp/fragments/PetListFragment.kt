@@ -52,12 +52,15 @@ class PetListFragment : Fragment() {
         query.addDescendingOrder("createdAt")
         query.findInBackground(object : FindCallback<Pet> {
             override fun done(pets: MutableList<Pet>?, e: ParseException?) {
+
                 if (e != null) {
+
                     // something went wrong
                     Log.e(TAG, "Error fetching posts")
                 } else {
                     if (pets != null) {
                         for (pet in pets) {
+
                             Log.i(
                                 TAG,
                                 "Name: " + pet.getName() + " , Description: " + pet.getDescription()
