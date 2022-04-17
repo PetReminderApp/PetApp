@@ -34,6 +34,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //query Tasks from Parse and load them into RecyclerView
         queryTasks()
 
         rvTasks = view.findViewById(R.id.rv_tasks)
@@ -41,7 +42,6 @@ class HomeFragment : Fragment() {
 
         rvTasks.adapter = adapter
     }
-
 
     //Query for posts in our server
     private fun queryTasks() {

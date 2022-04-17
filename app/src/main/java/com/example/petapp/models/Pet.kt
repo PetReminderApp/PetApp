@@ -47,9 +47,6 @@ class Pet : ParseObject() {
         put(KEY_PREFERENCES, preferences)
     }
 
-
-
-
     companion object {
         const val KEY_DESCRIPTION = "description"
         const val KEY_PICTURE = "picture"
