@@ -15,11 +15,11 @@ class Pet : ParseObject() {
         put(KEY_NAME, name)
     }
 
-    fun getTasks() : List<String>? {
+    fun getTasks() : List<Task>? {
         return getList(KEY_TASKS)
     }
 
-    fun setTasks(tasks : List<String>){
+    fun setTasks(tasks : List<Task>){
         put(KEY_TASKS, tasks)
     }
 
