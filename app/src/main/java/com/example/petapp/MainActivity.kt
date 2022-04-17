@@ -1,15 +1,17 @@
 package com.example.petapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.petapp.fragments.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.parse.ParseObject
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,9 +56,32 @@ class MainActivity : AppCompatActivity() {
         //Set default fragment
         bottomNav.selectedItemId = R.id.action_home
 
-        //todo
         fab.setOnClickListener {
-            Toast.makeText(this, "Clicked Fab", Toast.LENGTH_SHORT).show()
+            showAddItemDialog()
         }
+    }
+
+    private fun showAddItemDialog() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_add)
+
+        val addTask = bottomSheetDialog.findViewById<ConstraintLayout>(R.id.card_add_task)
+        val addPet = bottomSheetDialog.findViewById<ConstraintLayout>(R.id.card_add_pet)
+
+        //todo navigate to Task Compose Screen
+        addTask?.setOnClickListener {
+            Log.d(TAG, "Clicked Add Task")
+
+            bottomSheetDialog.dismiss()
+        }
+
+        //todo navigate to Pet Compose Screen
+        addPet?.setOnClickListener {
+            Log.d(TAG, "Clicked Add Pet")
+
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.show()
     }
 }
