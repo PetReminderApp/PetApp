@@ -3,7 +3,6 @@ package com.example.petapp
 import android.app.Application
 import com.example.petapp.models.Pet
 import com.example.petapp.models.Task
-import com.example.petapp.models.User
 import com.parse.Parse
 import com.parse.ParseObject
 
