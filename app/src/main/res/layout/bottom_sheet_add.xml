@@ -12,8 +12,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:alpha="0.2"
-        android:background="#808080" />
+        android:alpha="0.3"
+        android:background="@android:color/darker_gray" />
 
     <include
         android:layout_height="wrap_content"
