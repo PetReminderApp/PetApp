@@ -1,9 +1,5 @@
 package com.example.petapp
 
-
-
-
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -16,22 +12,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.petapp.models.Pet
 
+class PetAdapter(val context: Context, val pets: List<Pet>) :
+    RecyclerView.Adapter<PetAdapter.ViewHolder>() {
 
-class PetAdapter(val context : Context, val pets: List<Pet>)
-    : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
-
-    lateinit var tasks : List<String>
-    val arrayAdapter = ArrayAdapter (
+    lateinit var tasks: List<String>
+    val arrayAdapter = ArrayAdapter(
         context,
         R.layout.pet_tasks, tasks
-            )
+    )
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetAdapter.ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.pet_list ,parent,false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.pet_list, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PetAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pet = pets.get(position)
         holder.bind(pet)
     }
@@ -40,7 +35,7 @@ class PetAdapter(val context : Context, val pets: List<Pet>)
         return pets.size
     }
 
-    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvPetName: TextView
         val ivPetPic: ImageView
         val lvTaskList: ListView
