@@ -6,4 +6,11 @@
     <string name="add_task_body">Add a Task for a Pet</string>
     <string name="add_pet">Add Pet</string>
     <string name="add_pet_body">Add a Pet to manage</string>
+
+    <string name="repeat_daily">Daily</string>
+    <string name="repeat_weekly_this_day">Every Week This Day</string>
+    <string-array name="repeat_choices">
+        <item>@string/repeat_daily</item>
+        <item>@string/repeat_weekly_this_day</item>
+    </string-array>
 </resources>

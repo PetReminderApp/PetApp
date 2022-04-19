@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:clipToPadding="false"
+    android:padding="16dp"
     tools:context=".fragments.TaskComposeFragment">
 
     <Spinner
@@ -72,16 +72,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
-    <TimePicker
-        android:id="@+id/timepicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/tv_remind_me"
         android:layout_width="wrap_content"
@@ -96,15 +86,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_remind_me"
-        android:elevation="1dp"
-        android:background="@color/light_grey"
+        android:background="@drawable/border_black"
+        android:elevation="5dp"
         android:padding="5dp"
-        android:textStyle="bold"
-        android:textSize="30sp"
         android:text="12 : 42"
-        />
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_remind_me" />
 
     <TextView
         android:id="@+id/textView8"
@@ -120,6 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:entries="@array/repeat_choices"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
