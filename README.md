@@ -92,6 +92,7 @@ For example, if your brother wakes up at 6am and takes the dog out and you wake 
 | Title         | String        | Title of task |
 | Completed     | Boolean       | Whether the task is complete or not |
 | Repeat        | String        | How often to show the task/notify the user |
+| reminderTime  | String        | What time to notify the user |
 
 #### Pet
 | Property      | Type          | Description                        |
