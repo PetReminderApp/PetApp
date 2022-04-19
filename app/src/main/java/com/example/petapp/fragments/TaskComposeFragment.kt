@@ -112,26 +112,47 @@ class TaskComposeFragment : Fragment() {
             val title = etTitle.text.toString()
             val description = etDescription.text.toString()
             val reminderTime = tvReminderTime.text.toString()
+            val repeat = spRepeat.selectedItem.toString()
 
             Log.d(
                 TAG, listOf(
                     "\nName: ${selectedPet.getName()}",
                     "Title: $title",
                     "Description: $description",
-                    "Reminder Time: $reminderTime"
-                    ).joinToString(",\n")
+                    "Reminder Time: $reminderTime",
+                    "Repeat: $repeat"
+                ).joinToString(",\n")
             )
-            //todo 1. Validate input
+
+            //1. Validate input
+            //if input is not valid, show Toast and return
+            if (!inputIsValid(title, description, reminderTime, repeat)) {
+                Toast.makeText(requireContext(), "Invalid Input!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             //todo 2. Create Object
             val task = Task().apply {
                 setTitle(title)
                 setDescription(description)
+                setPet(selectedPet)
+                setRepeat(repeat)
             }
 
             //todo 3. Send object to Parse
         }
 
+    }
+
+    private fun inputIsValid(
+        title: String,
+        description: String,
+        reminderTime: String,
+        repeat: String
+    ): Boolean {
+        //must have title and repeat.
+        if (title.isBlank() || reminderTime.isBlank()) return false
+        return true
     }
 
     private fun populatePetsSpinner() {

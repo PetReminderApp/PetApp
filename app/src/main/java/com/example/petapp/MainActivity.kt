@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         //todo navigate to Task Compose Screen
         addTask?.setOnClickListener {
             Log.d(TAG, "Clicked Add Task")
+            //todo verify user has a Pet already
 
             fragmentManager
                 .beginTransaction()
