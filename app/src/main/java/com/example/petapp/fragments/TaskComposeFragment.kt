@@ -1,5 +1,6 @@
 package com.example.petapp.fragments
 
+import android.R.layout.simple_spinner_item
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
@@ -7,24 +8,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import com.example.petapp.R
+import com.example.petapp.models.Pet
 import com.example.petapp.models.Task
+import com.example.petapp.util.ParseUtil
 
 private const val TAG = "TaskComposeFragment"
 
 class TaskComposeFragment : Fragment() {
 
-    lateinit var spPets: Spinner
-    lateinit var etTitle: EditText
-    lateinit var etDescription: EditText
-    lateinit var tvReminderTime: TextView
-    lateinit var spRepeat: Spinner
-    lateinit var btSave: Button
-    val timePickerDialogListener: TimePickerDialog.OnTimeSetListener =
+    private lateinit var spPets: Spinner
+    private lateinit var etTitle: EditText
+    private lateinit var etDescription: EditText
+    private lateinit var tvReminderTime: TextView
+    private lateinit var spRepeat: Spinner
+    private lateinit var btSave: Button
+
+    private val userPets = mutableListOf<Pet>()
+    private val petNames = mutableListOf<String>()
+    private lateinit var arrayAdapter: ArrayAdapter<String>
+    private val timePickerDialogListener: TimePickerDialog.OnTimeSetListener =
         TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute -> // logic to properly handle
             // the picked timings by user
             val formattedTime: String = when {
@@ -79,17 +83,19 @@ class TaskComposeFragment : Fragment() {
         spRepeat = view.findViewById(R.id.sp_repeat)
         btSave = view.findViewById(R.id.bt_save)
 
+        //populate the Pets Spinner with all of the User's Pet Names
+        populatePetsSpinner()
+
         tvReminderTime.setOnClickListener {
             Log.d(TAG, "Reminder time clicked")
 
             val timePicker: TimePickerDialog = TimePickerDialog(
-                // pass the Context
                 requireContext(),
                 // listener to perform task when time is picked
                 timePickerDialogListener,
-                // default hour when the time picker dialog is opened
+                // default hour
                 12,
-                // default minute when the time picker dialog is opened
+                // default minute
                 10,
                 // 24 hours time picker is false (varies according to the region)
                 false
@@ -102,9 +108,19 @@ class TaskComposeFragment : Fragment() {
 
         //send the task to Parse
         btSave.setOnClickListener {
+            val selectedPet = userPets[spPets.selectedItemPosition]
             val title = etTitle.text.toString()
             val description = etDescription.text.toString()
             val reminderTime = tvReminderTime.text.toString()
+
+            Log.d(
+                TAG, listOf(
+                    "\nName: ${selectedPet.getName()}",
+                    "Title: $title",
+                    "Description: $description",
+                    "Reminder Time: $reminderTime"
+                    ).joinToString(",\n")
+            )
             //todo 1. Validate input
 
             //todo 2. Create Object
@@ -116,6 +132,22 @@ class TaskComposeFragment : Fragment() {
             //todo 3. Send object to Parse
         }
 
+    }
+
+    private fun populatePetsSpinner() {
+        arrayAdapter = ArrayAdapter(requireContext(), simple_spinner_item, petNames)
+
+        //populates userPets, petNames, and the arrayAdapter
+        ParseUtil.queryPets { pet ->
+            pet.getName()?.let {
+                Log.d(TAG, "Adding $it to petNames")
+                userPets.add(pet)
+                petNames.add(it)
+                arrayAdapter.notifyDataSetChanged()
+            }
+        }
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spPets.adapter = arrayAdapter
     }
 
 }
