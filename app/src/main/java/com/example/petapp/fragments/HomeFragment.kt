@@ -12,6 +12,7 @@ import com.example.petapp.adapters.UpcomingTasksAdapter
 import com.example.petapp.models.Pet
 import com.example.petapp.models.Task
 import com.example.petapp.models.getPets
+import com.example.petapp.util.ParseUtil
 import com.parse.ParseQuery
 import com.parse.ParseUser
 
@@ -45,46 +46,11 @@ class HomeFragment : Fragment() {
 
     //Query for posts in our server
     private fun queryTasks() {
-        queryPets { pet ->
+        ParseUtil.queryPets { pet ->
             //iterate over task pointers and append to tasks
-            queryPetTasks(pet) { task ->
+            ParseUtil.queryPetTasks(pet) { task ->
                 tasks.add(task)
                 adapter.notifyItemInserted(tasks.size)
-            }
-        }
-    }
-
-    private fun queryPetTasks(pet: Pet, callback: (Task) -> Unit) {
-        val taskPointers = pet.getTasks()
-
-        taskPointers?.forEach { task ->
-            callback(task.fetchIfNeeded())
-        }
-    }
-
-    private fun queryPets(callback: (Pet) -> Unit) {
-        //object ID of currently signed in User
-        val userObjId = ParseUser.getCurrentUser().objectId
-
-        // Specify which class to query
-        val query: ParseQuery<ParseUser> = ParseQuery.getQuery(ParseUser::class.java)
-        //query current user by its objectID
-        query.whereEqualTo("objectId", userObjId)
-
-        query.getFirstInBackground { user, e ->
-            if (e != null) {
-                //Something went wrong
-                Log.e(TAG, "Error fetching User")
-            } else {
-                if (user != null) {
-                    //get pets from user
-                    val userPetsPointers = user.getPets()
-
-                    //iterate over all Pets
-                    userPetsPointers?.forEach { pet ->
-                        callback(pet.fetchIfNeeded())
-                    }
-                }
             }
         }
     }
