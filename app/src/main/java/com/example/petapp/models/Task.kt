@@ -55,6 +55,14 @@ class Task : ParseObject() {
         put(KEY_PET, pet)
     }
 
+    fun getReminderTime(): String? {
+        return getString(KEY_REMINDER_TIME)
+    }
+
+    fun setReminderTime(reminderTime: String) {
+        put(KEY_REMINDER_TIME, reminderTime)
+    }
+
     companion object {
         const val KEY_COMPLETED = "completed"
         const val KEY_TIME = "time"
@@ -62,5 +70,6 @@ class Task : ParseObject() {
         const val KEY_REPEAT = "repeat"
         const val KEY_DESCRIPTION = "description"
         const val KEY_PET = "pet"
+        const val KEY_REMINDER_TIME = "reminderTime"
     }
 }
