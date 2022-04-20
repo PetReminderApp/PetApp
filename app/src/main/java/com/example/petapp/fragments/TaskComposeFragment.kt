@@ -115,8 +115,8 @@ class TaskComposeFragment : Fragment() {
             val repeat = spRepeat.selectedItem.toString()
 
             Log.d(
-                TAG, listOf(
-                    "\nName: ${selectedPet.getName()}",
+                TAG, "\n" + listOf(
+                    "Name: ${selectedPet.getName()}",
                     "Title: $title",
                     "Description: $description",
                     "Reminder Time: $reminderTime",
@@ -131,15 +131,23 @@ class TaskComposeFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            //todo 2. Create Object
+            //2. Create Object
             val task = Task().apply {
                 setTitle(title)
                 setDescription(description)
                 setPet(selectedPet)
                 setRepeat(repeat)
+                setReminderTime(reminderTime)
             }
 
-            //todo 3. Send object to Parse
+            //3. Send object to Parse
+            task.saveInBackground().onSuccess {
+                Log.d(TAG, "Saved Task successfully")
+                //pop backstack
+                activity?.supportFragmentManager?.popBackStack()
+            }
+
+            //todo 4. Update Pet Task Pointer Array
         }
 
     }

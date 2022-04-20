@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity() {
             fragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_container_view, TaskComposeFragment())
+                .addToBackStack(null)
                 .commit()
 
             bottomSheetDialog.dismiss()
