@@ -13,6 +13,7 @@ import com.example.petapp.R
 import com.example.petapp.models.Pet
 import com.example.petapp.models.Task
 import com.example.petapp.util.ParseUtil
+import java.util.*
 
 private const val TAG = "TaskComposeFragment"
 
@@ -138,18 +139,30 @@ class TaskComposeFragment : Fragment() {
                 setPet(selectedPet)
                 setRepeat(repeat)
                 setReminderTime(reminderTime)
+                setTime(Date())
             }
 
             //3. Send object to Parse
             task.saveInBackground().onSuccess {
                 Log.d(TAG, "Saved Task successfully")
+
+                //todo 4. Update Pet Task Pointer Array
+                //a) get Pet Task Pointer Array
+                val petTaskPointers = selectedPet.getTasks()?.toMutableList()
+
+                Log.d(TAG, "petTaskPointers is $petTaskPointers") // is this null? Can't add item to list if null...
+                
+                //b) Update Pointer Array
+                petTaskPointers?.add(task)
+                selectedPet.setTasks(petTaskPointers?.toList() ?: listOf(task))
+
+                //c) POST new pointer Array
+                selectedPet.saveInBackground()
+
                 //pop backstack
                 activity?.supportFragmentManager?.popBackStack()
             }
-
-            //todo 4. Update Pet Task Pointer Array
         }
-
     }
 
     private fun inputIsValid(
