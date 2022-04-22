@@ -146,11 +146,11 @@ class TaskComposeFragment : Fragment() {
             task.saveInBackground().onSuccess {
                 Log.d(TAG, "Saved Task successfully")
 
-                //todo 4. Update Pet Task Pointer Array
+                //4. Update Pet Task Pointer Array
                 //a) get Pet Task Pointer Array
                 val petTaskPointers = selectedPet.getTasks()?.toMutableList()
 
-                Log.d(TAG, "petTaskPointers is $petTaskPointers") // is this null? Can't add item to list if null...
+                Log.d(TAG, "petTaskPointers is $petTaskPointers")
                 
                 //b) Update Pointer Array
                 petTaskPointers?.add(task)
