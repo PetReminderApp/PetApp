@@ -74,6 +74,7 @@ class SocialFragment : Fragment() {
         val query: ParseQuery<FriendRequest> = ParseQuery.getQuery(FriendRequest::class.java)
         // Find all Post objects
         query.include(FriendRequest.KEY_RECEIVER)
+        query.include(FriendRequest.KEY_SENDER)
         // Return posts in descending order: ie newer posts will appear first
         query.addDescendingOrder("createdAt")
 
