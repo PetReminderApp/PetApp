@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.petapp.fragments.HomeFragment
+import com.example.petapp.fragments.TaskComposeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
                 fragmentManager.beginTransaction().replace(R.id.fragment_container_view, fragment).commit()
             }
 
+
             //Return true to say that we've handled this user interaction
             true
         }
@@ -57,11 +59,11 @@ class MainActivity : AppCompatActivity() {
         bottomNav.selectedItemId = R.id.action_home
 
         fab.setOnClickListener {
-            showAddItemDialog()
+            showAddItemDialog(fragmentManager)
         }
     }
 
-    private fun showAddItemDialog() {
+    private fun showAddItemDialog(fragmentManager: FragmentManager) {
         val bottomSheetDialog = BottomSheetDialog(this)
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_add)
 
@@ -71,6 +73,13 @@ class MainActivity : AppCompatActivity() {
         //todo navigate to Task Compose Screen
         addTask?.setOnClickListener {
             Log.d(TAG, "Clicked Add Task")
+            //todo verify user has a Pet already
+
+            fragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container_view, TaskComposeFragment())
+                .addToBackStack(null)
+                .commit()
 
             bottomSheetDialog.dismiss()
         }
