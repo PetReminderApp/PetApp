@@ -35,6 +35,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        tasks.clear()
+
         //query Tasks from Parse and load them into RecyclerView
         queryTasks()
 
