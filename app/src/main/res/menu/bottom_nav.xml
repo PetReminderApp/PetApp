@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_paw"
         android:title="Pets" />
     <item
-        android:id="@+id/action_chat"
+        android:id="@+id/action_social"
         android:icon="@drawable/ic_chat"
         android:title="Chat" />
     <item
