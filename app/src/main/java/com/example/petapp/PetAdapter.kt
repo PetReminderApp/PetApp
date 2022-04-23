@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.petapp.models.Pet
+import com.example.petapp.models.Task
 
 
 class PetAdapter(val context : Context, val pets: List<Pet>)
@@ -43,7 +44,7 @@ class PetAdapter(val context : Context, val pets: List<Pet>)
         val tvPetName: TextView
         val ivPetPic: ImageView
         val lvTaskList: ListView
-        lateinit var tasks: List<String>
+        lateinit var tasks: List<Task>
 
         init {
             tvPetName = itemView.findViewById(R.id.tvPetName)

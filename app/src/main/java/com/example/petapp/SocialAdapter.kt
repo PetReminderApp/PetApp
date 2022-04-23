@@ -1,6 +1,7 @@
 package com.example.petapp
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petapp.models.FriendRequest
+import com.parse.ParseUser
 
 class SocialAdapter(val context: Context, val requests: ArrayList<FriendRequest>)
     : RecyclerView.Adapter<SocialAdapter.ViewHolder>() {
@@ -21,10 +23,23 @@ class SocialAdapter(val context: Context, val requests: ArrayList<FriendRequest>
 
     override fun onBindViewHolder(holder: SocialAdapter.ViewHolder, position: Int) {
         val request = requests.get(position)
-        holder.bind(request)
+        if (request.getReceiver()?.username  == ParseUser.getCurrentUser().username) {
+            Log.i(TAG, request.getReceiver().toString())
+            Log.i(TAG, ParseUser.getCurrentUser().username.toString())
+            holder.bind(request)
+        }
     }
 
     override fun getItemCount(): Int {
+        /*
+        var count = 0
+        for (item in requests) {
+            if (item.getReceiver()?.username  == ParseUser.getCurrentUser().username) {
+                count++
+            }
+        }
+        return count
+        */
         return requests.size
     }
 
@@ -54,5 +69,9 @@ class SocialAdapter(val context: Context, val requests: ArrayList<FriendRequest>
         fun bind(request: FriendRequest) {
             tvSender.text = request.getSender()?.username
         }
+    }
+
+    companion object {
+        const val TAG = "SocialActivity"
     }
 }

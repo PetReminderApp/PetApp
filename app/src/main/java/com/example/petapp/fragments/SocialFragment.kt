@@ -12,6 +12,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.petapp.R
 import com.example.petapp.SocialAdapter
 import com.example.petapp.models.FriendRequest
+import com.example.petapp.models.getEmailVerified
+import com.example.petapp.models.getUsername
 import com.parse.FindCallback
 import com.parse.ParseException
 import com.parse.ParseQuery

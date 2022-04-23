@@ -9,7 +9,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="MissingClass">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_social"
