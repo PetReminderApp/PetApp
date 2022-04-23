@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.petapp.fragments.AddPetFragment
 import com.example.petapp.fragments.HomeFragment
 import com.example.petapp.fragments.TaskComposeFragment
 import com.example.petapp.fragments.SocialFragment
@@ -49,6 +50,9 @@ class MainActivity : AppCompatActivity() {
 //                R.id.action_profile -> {
 //                    fragment = ProfileFragment()
 //                }
+           //     R.id.action_chat ->{
+             //       fragment=AddPetFragment()
+            //    }
             }
 
             if (fragment != null) {
@@ -91,6 +95,8 @@ class MainActivity : AppCompatActivity() {
         //todo navigate to Pet Compose Screen
         addPet?.setOnClickListener {
             Log.d(TAG, "Clicked Add Pet")
+
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view,AddPetFragment()).addToBackStack(null).commit()
 
             bottomSheetDialog.dismiss()
         }
