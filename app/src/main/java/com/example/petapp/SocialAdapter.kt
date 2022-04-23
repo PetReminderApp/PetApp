@@ -23,23 +23,11 @@ class SocialAdapter(val context: Context, val requests: ArrayList<FriendRequest>
 
     override fun onBindViewHolder(holder: SocialAdapter.ViewHolder, position: Int) {
         val request = requests.get(position)
-        if (request.getReceiver()?.username  == ParseUser.getCurrentUser().username) {
-            Log.i(TAG, request.getReceiver().toString())
-            Log.i(TAG, ParseUser.getCurrentUser().username.toString())
-            holder.bind(request)
-        }
+        holder.bind(request)
     }
 
     override fun getItemCount(): Int {
-        /*
-        var count = 0
-        for (item in requests) {
-            if (item.getReceiver()?.username  == ParseUser.getCurrentUser().username) {
-                count++
-            }
-        }
-        return count
-        */
+
         return requests.size
     }
 

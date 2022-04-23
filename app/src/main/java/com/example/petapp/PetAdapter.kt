@@ -58,7 +58,7 @@ class PetAdapter(val context : Context, val pets: List<Pet>)
             tasks = pet.getTasks()!!
             lvTaskList.adapter = ArrayAdapter(
                 context,
-                android.R.layout.simple_list_item_1, tasks
+                R.layout.pet_tasks, tasks
             )
 
 

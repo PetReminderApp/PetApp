@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.petapp.fragments.HomeFragment
+import com.example.petapp.fragments.PetListFragment
 import com.example.petapp.fragments.TaskComposeFragment
 import com.example.petapp.fragments.SocialFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -43,6 +44,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_social -> {
                     fragment = SocialFragment()
                 }
+                R.id.action_pets -> {
+                    fragment = PetListFragment()
+                }
+
 //                R.id.action_compose -> {
 //                    fragment = ComposeFragment()
 //                }

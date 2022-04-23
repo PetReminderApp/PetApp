@@ -17,6 +17,7 @@ import com.example.petapp.models.getUsername
 import com.parse.FindCallback
 import com.parse.ParseException
 import com.parse.ParseQuery
+import com.parse.ParseUser
 
 class SocialFragment : Fragment() {
 
@@ -82,6 +83,7 @@ class SocialFragment : Fragment() {
 
         // Only return the most recent 20 posts
         query.limit = 20
+        query.whereEqualTo(FriendRequest.KEY_RECEIVER, ParseUser.getCurrentUser())
 
         query.findInBackground(object: FindCallback<FriendRequest> {
             override fun done(posts: MutableList<FriendRequest>?, e: ParseException?) {
