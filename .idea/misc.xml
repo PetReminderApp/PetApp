@@ -3,12 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Lenovo/Documents/PetApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/Documents/PetApp/app/src/main/res/layout/fragment_social.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/Documents/PetApp/app/src/main/res/layout/item_social.xml" value="0.33" />
+        <entry key="..\:/Users/Lenovo/Documents/PetApp/app/src/main/res/menu/bottom_nav.xml" value="0.1" />
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/drawable/border_black.xml" value="0.1825" />
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/layout/bottom_sheet_add.xml" value="0.4" />
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/layout/card_add_pet.xml" value="0.4244791666666667" />
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/layout/card_add_task.xml" value="0.4244791666666667" />
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/layout/fragment_task_compose.xml" value="0.264" />
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/layout/item_task.xml" value="0.264" />
         <entry key="..\:/Users/tanvi/Documents/code/PetApp/app/src/main/res/layout/activity_login.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/tanvi/Documents/code/PetApp/app/src/main/res/layout/activity_main.xml" value="0.26992753623188404" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

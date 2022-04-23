@@ -2,4 +2,27 @@
     <string name="app_name">PetApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_task">Add Task</string>
+    <string name="add_task_body">Add a Task for a Pet</string>
+    <string name="add_pet">Add Pet</string>
+    <string name="add_pet_body">Add a Pet to manage</string>
+
+    <string name="label_pet">Pet:</string>
+    <string name="label_title">Title</string>
+    <string name="label_description">Description</string>
+    <string name="label_remind_me">Remind Me:</string>
+    <string name="label_repeat">Repeat:</string>
+
+    <string name="save">save</string>
+
+    <string name="hint_task_title">Task Title</string>
+    <string name="hint_task_description">Description of Task</string>
+    <string name="task_default_time">12:00 pm</string>
+
+    <string name="repeat_daily">Daily</string>
+    <string name="repeat_weekly_this_day">Every Week This Day</string>
+    <string-array name="repeat_choices">
+        <item>@string/repeat_daily</item>
+        <item>@string/repeat_weekly_this_day</item>
+    </string-array>
 </resources>

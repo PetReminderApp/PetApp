@@ -2,15 +2,19 @@ package com.example.petapp.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petapp.R
 import com.example.petapp.adapters.UpcomingTasksAdapter
+import com.example.petapp.models.Pet
 import com.example.petapp.models.Task
+import com.example.petapp.models.getPets
+import com.example.petapp.util.ParseUtil
 import com.parse.ParseQuery
+import com.parse.ParseUser
 
 private const val TAG = "HomeFragment"
 
@@ -31,6 +35,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        tasks.clear()
+
+        //query Tasks from Parse and load them into RecyclerView
         queryTasks()
 
         rvTasks = view.findViewById(R.id.rv_tasks)
@@ -39,38 +46,13 @@ class HomeFragment : Fragment() {
         rvTasks.adapter = adapter
     }
 
-
     //Query for posts in our server
-    fun queryTasks() {
-        Log.i(TAG, "querying Tasks")
-
-        // Specify which class to query
-        val query: ParseQuery<Task> = ParseQuery.getQuery(Task::class.java)
-//        query.include(Post.KEY_USER)
-        // Return posts in descending order; newer posts appear 1st
-//        query.addDescendingOrder("createdAt")
-
-        //return 20 most recent posts
-        query.limit = 20
-
-        query.findInBackground { tasks, e ->
-            if (e != null) {
-                //Something went wrong
-                Log.e(TAG, "Error fetching tasks")
-            } else {
-                if (tasks != null) {
-                    for (task in tasks) {
-                        Log.i(
-                            TAG,
-                            "Task: ${task.getTitle()}, Description: ${task.getDescription()} Pet: ${task.getPet().toString()}}"
-                        )
-                    }
-
-                    this.tasks.addAll(tasks)
-                    adapter.notifyDataSetChanged()
-                    //Signal that refreshing has finished
-//                    swipeContainer.isRefreshing = false
-                }
+    private fun queryTasks() {
+        ParseUtil.queryPets { pet ->
+            //iterate over task pointers and append to tasks
+            ParseUtil.queryPetTasks(pet) { task ->
+                tasks.add(task)
+                adapter.notifyItemInserted(tasks.size)
             }
         }
     }
