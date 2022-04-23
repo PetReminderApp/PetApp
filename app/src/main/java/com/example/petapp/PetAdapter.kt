@@ -14,27 +14,26 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.petapp.model.Pet
+import com.example.petapp.models.Pet
 
 
 class PetAdapter(val context : Context, val pets: List<Pet>)
     : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
 
-    lateinit var tasks : List<String>
-    val arrayAdapter = ArrayAdapter (
-        context,
-        R.layout.pet_tasks, tasks
-            )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetAdapter.ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.pet_list ,parent,false)
+
+
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PetAdapter.ViewHolder, position: Int) {
-        val pet = pets.get(position)
-        holder.bind(pet)
+        val pet = pets[position]
+        holder.bind(pet, context)
     }
+
+
 
     override fun getItemCount(): Int {
         return pets.size
@@ -52,14 +51,15 @@ class PetAdapter(val context : Context, val pets: List<Pet>)
             lvTaskList = itemView.findViewById(R.id.lvTaskList)
         }
 
-        fun bind(pet: Pet) {
+        fun bind(pet: Pet, context: Context) {
             tvPetName.text = pet.getName()
-            //TODO find out how to turn List<String> into ListView or RecyclerView
-            /*
-            Ideas :
-                ArrayAdapter
-                Move pet class to Fragment
-             */
+
+            tasks = pet.getTasks()!!
+            lvTaskList.adapter = ArrayAdapter(
+                context,
+                android.R.layout.simple_list_item_1, tasks
+            )
+
 
             Glide.with(itemView.context).load(pet.getPicture()?.url).into(ivPetPic)
 
