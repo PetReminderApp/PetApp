@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:background="?attr/colorSurface">
+            style="@style/Theme.PetApp.CardStyle">
 
             <ImageView
                 android:id="@+id/iv_image"

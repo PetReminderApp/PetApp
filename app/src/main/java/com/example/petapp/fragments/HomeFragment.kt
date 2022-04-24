@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petapp.R
-import com.example.petapp.util.RecyclerItemTouchHelper
 import com.example.petapp.adapters.UpcomingTasksAdapter
 import com.example.petapp.models.Task
 import com.example.petapp.util.ParseUtil
+import com.example.petapp.util.RecyclerItemTouchHelper
 
 
 private const val TAG = "HomeFragment"
@@ -39,11 +39,17 @@ class HomeFragment : Fragment() {
             RecyclerItemTouchHelper.RecyclerItemTouchHelperListener { viewHolder, direction, position ->
                 if (viewHolder is UpcomingTasksAdapter.ViewHolder) {
                     Log.d(TAG, "HelperListener: Removing item")
-                    adapter.removeItem(viewHolder.getAdapterPosition()) //remove the item from the adapter
-                    //todo mark item complete
+                    //Mark Task complete
+                    val completedTask = tasks[viewHolder.adapterPosition]
+                    completedTask.setCompleted(true)
+                    completedTask.saveInBackground()
+
+                    //Remove Task from adapter
+                    adapter.removeItem(viewHolder.adapterPosition) //remove the item from the adapter
                 }
             }
 
+        //if returning from another fragment, tasks should be cleared then updated
         tasks.clear()
 
         //query Tasks from Parse and load them into RecyclerView
@@ -70,8 +76,10 @@ class HomeFragment : Fragment() {
         ParseUtil.queryPets { pet ->
             //iterate over task pointers and append to tasks
             ParseUtil.queryPetTasks(pet) { task ->
-                tasks.add(task)
-                adapter.notifyItemInserted(tasks.size)
+                if (task.getCompleted() == false) {
+                    tasks.add(task)
+                    adapter.notifyItemInserted(tasks.size)
+                }
             }
         }
     }
