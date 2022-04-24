@@ -22,6 +22,7 @@
     <string name="repeat_daily">Daily</string>
     <string name="repeat_weekly_this_day">Every Week This Day</string>
     <string name="swipe_to_complete">Swipe to Complete</string>
+    <string name="loading_tasks">Loading Tasks</string>
     <string-array name="repeat_choices">
         <item>@string/repeat_daily</item>
         <item>@string/repeat_weekly_this_day</item>

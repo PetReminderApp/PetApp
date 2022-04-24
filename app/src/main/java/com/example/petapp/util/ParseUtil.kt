@@ -10,12 +10,14 @@ import com.parse.ParseUser
 private const val TAG = "ParseUtil"
 object ParseUtil {
 
-    fun queryPetTasks(pet: Pet, callback: (Task) -> Unit) {
+    fun queryPetTasks(pet: Pet, callback: (Task) -> Unit, onTasksDone: () -> Unit) {
         val taskPointers = pet.getTasks()
 
         taskPointers?.forEach { task ->
             callback(task.fetchIfNeeded())
         }
+
+        onTasksDone()
     }
 
     fun queryPets(callback: (Pet) -> Unit) {
