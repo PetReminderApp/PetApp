@@ -5,6 +5,7 @@ package com.example.petapp
 
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,10 +56,15 @@ class PetAdapter(val context : Context, val pets: List<Pet>)
         fun bind(pet: Pet, context: Context) {
             tvPetName.text = pet.getName()
 
-            tasks = pet.getTasks()!!
+            tasks = pet.getTasks() ?: listOf()
+            val taskTitles = tasks.map { it.fetchIfNeeded<Task>().getTitle() }
+            Log.d(TAG, "taskTitles for ${pet.getName()}: $taskTitles")
+
             lvTaskList.adapter = ArrayAdapter(
                 context,
-                android.R.layout.simple_list_item_1, tasks
+                R.layout.pet_tasks,
+                R.id.pet_task,
+                taskTitles
             )
 
 
@@ -69,5 +75,7 @@ class PetAdapter(val context : Context, val pets: List<Pet>)
 
     }
 
-
+    companion object {
+        val TAG = "PetAdapter"
+    }
 }

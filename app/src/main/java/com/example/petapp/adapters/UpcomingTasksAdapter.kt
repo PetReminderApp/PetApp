@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.petapp.R
@@ -38,7 +41,14 @@ class UpcomingTasksAdapter(
         return tasks.size
     }
 
+    fun removeItem(position: Int) {
+        tasks.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val background: RelativeLayout
+        val foreground: ConstraintLayout
         val tvTaskTitle: TextView
         val ivImage: ImageView
         val tvDeadlineTime: TextView
@@ -63,6 +73,8 @@ class UpcomingTasksAdapter(
         }
 
         init {
+            background = itemView.findViewById(R.id.background)
+            foreground = itemView.findViewById(R.id.foreground)
             tvTaskTitle = itemView.findViewById(R.id.tv_task_title)
             ivImage = itemView.findViewById(R.id.iv_image)
             tvDeadlineTime = itemView.findViewById(R.id.tv_deadline_time)
