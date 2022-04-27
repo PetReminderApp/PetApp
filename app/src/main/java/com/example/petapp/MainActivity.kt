@@ -1,5 +1,8 @@
 package com.example.petapp
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        createNotificationChannel()
 
         bottomNav = findViewById(R.id.bottom_nav)
         fab = findViewById(R.id.fab_add)
@@ -101,5 +106,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         bottomSheetDialog.show()
+    }
+
+    private fun createNotificationChannel() {
+        val currTime = System.currentTimeMillis()
+
+        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+
+
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, currTime, pendingIntent)
+
+//        alarmManager.setRepeating(
+//            AlarmManager.RTC_WAKEUP,
+//            currTime,
+//            AlarmManager.INTERVAL_HOUR * 2,
+//            pendingIntent
+//        )
     }
 }
