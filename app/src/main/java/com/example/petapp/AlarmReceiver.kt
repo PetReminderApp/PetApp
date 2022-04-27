@@ -7,11 +7,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.petapp.util.ParseUtil
+import java.text.SimpleDateFormat
+import java.time.Duration
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -24,21 +28,52 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private fun showTaskNotifications(context: Context) {
         //unique ID for each notification
-        val notificationId = SystemClock.uptimeMillis().toInt()
+        var notificationId = 0
 
         ParseUtil.queryPets { pet ->
             ParseUtil.queryPetTasks(
                 pet,
                 callback = { task ->
                     if (task.getCompleted() == false) {
-                        //create notification for task
-                        task.getTitle()?.let { showNotification(context, "Incomplete Task", it, notificationId) }
-                        Log.d(TAG,"showTaskNotifications: $notificationId Incomplete Task: ${task.getTitle()}")
+                        //get curr time with same formatting as Task reminderTime
+                        val currentTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
+                        val formattedReminderTime = task.getReminderTime()!!
+                            .uppercase()
+                            .padStart(8, '0') //4:10 pm -> 04:10 PM
+
+                        val hoursUntilTask = getHourDifference(formattedReminderTime, currentTime)
+
+                        if (hoursUntilTask in 0..2) { // 0 - 2:59 hours remaining until Task
+                            //create notification for task
+                            showNotification(context, "Incomplete Task", task.getTitle()!!, notificationId++)
+
+                            Log.d(TAG, "Incomplete Task: ${task.getTitle()}")
+                            Log.d(TAG, "$formattedReminderTime - $currentTime = ${getHourDifference(formattedReminderTime, currentTime)}\n\n")
+                        }
                     }
                 },
                 {}
             )
         }
+    }
+
+    private fun getHourDifference(reminderTime: String, currentTime: String): Int {
+        val timeFormatter: DateTimeFormatter =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH)
+            } else {
+                TODO("VERSION.SDK_INT < O")
+            }
+
+        val start: LocalTime = LocalTime.parse(currentTime, timeFormatter)
+        val end: LocalTime = LocalTime.parse(reminderTime, timeFormatter)
+
+        val diff: Duration = Duration.between(start, end)
+
+        val hours: Long = diff.toHours()
+        val minutes: Long = diff.minusHours(hours).toMinutes()
+
+        return hours.toInt()
     }
 
     private fun showNotification(
