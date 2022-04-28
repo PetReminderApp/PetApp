@@ -115,15 +115,14 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, AlarmReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
 
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, currTime, pendingIntent)
 
-
-        alarmManager.set(AlarmManager.RTC_WAKEUP, currTime, pendingIntent)
-
-//        alarmManager.setRepeating(
-//            AlarmManager.RTC_WAKEUP,
-//            currTime,
-//            AlarmManager.INTERVAL_HOUR * 2,
-//            pendingIntent
-//        )
+        //Runs AlarmReceiver every 2 hours, giving notifications for any Tasks < 3 hrs away
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            currTime,
+            AlarmManager.INTERVAL_HOUR * 2,
+            pendingIntent
+        )
     }
 }

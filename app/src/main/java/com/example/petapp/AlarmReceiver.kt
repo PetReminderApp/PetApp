@@ -47,7 +47,7 @@ class AlarmReceiver : BroadcastReceiver() {
                             //create notification for task
                             showNotification(context, "Incomplete Task", task.getTitle()!!, notificationId++)
 
-                            Log.d(TAG, "Incomplete Task: ${task.getTitle()}")
+                            Log.d(TAG, "Incomplete Task: ${task.getTitle()} in $hoursUntilTask hours")
                             Log.d(TAG, "$formattedReminderTime - $currentTime = ${getHourDifference(formattedReminderTime, currentTime)}\n\n")
                         }
                     }
