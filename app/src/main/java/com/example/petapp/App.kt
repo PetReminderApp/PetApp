@@ -1,6 +1,7 @@
 package com.example.petapp
 
 import android.app.Application
+import com.example.petapp.models.Friend
 import com.example.petapp.models.FriendRequest
 import com.example.petapp.models.Pet
 import com.example.petapp.models.Task
@@ -14,6 +15,7 @@ class App : Application() {
         ParseObject.registerSubclass(Task::class.java)
         ParseObject.registerSubclass(Pet::class.java)
         ParseObject.registerSubclass(FriendRequest::class.java)
+        ParseObject.registerSubclass(Friend::class.java)
 
         super.onCreate()
         Parse.initialize(
