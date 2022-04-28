@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/drawable-v24/blue_border_rounded_cornwe.xml" value="0.239" />
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/drawable-v24/blue_fill__rounded_color.xml" value="0.239" />
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/drawable-v24/cursor_color.xml" value="0.239" />
         <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/drawable/border_black.xml" value="0.108" />
         <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/drawable/task_rect_corners.xml" value="0.2" />
         <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/drawable/task_rounded_corners.xml" value="0.108" />
+        <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/layout/activity_main.xml" value="0.2625" />
         <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/layout/bottom_sheet_add.xml" value="0.4" />
         <entry key="..\:/Users/ahmad/OneDrive/Desktop/PetApp/app/src/main/res/layout/card_add_pet.xml" value="0.4244791666666667" />
