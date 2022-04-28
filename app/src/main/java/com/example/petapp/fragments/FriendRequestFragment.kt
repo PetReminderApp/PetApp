@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.petapp.R
-import com.example.petapp.FriendRequestAdapter
+import com.example.petapp.adapters.FriendRequestAdapter
 import com.example.petapp.models.FriendRequest
 import com.parse.FindCallback
 import com.parse.ParseException

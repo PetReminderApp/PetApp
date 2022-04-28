@@ -1,4 +1,4 @@
-package com.example.petapp
+package com.example.petapp.adapters
 
 import android.content.Context
 import android.util.Log
@@ -7,26 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
+import com.example.petapp.R
 import com.example.petapp.models.Friend
 import com.example.petapp.models.FriendRequest
-import com.example.petapp.models.Task
 import com.parse.ParseUser
-import java.util.*
 import kotlin.collections.ArrayList
 
 class FriendRequestAdapter(val context: Context, val requests: ArrayList<FriendRequest>)
     : RecyclerView.Adapter<FriendRequestAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendRequestAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Specify the layout file to use for this item
 
         val view = LayoutInflater.from(context).inflate(R.layout.item_social, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FriendRequestAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val request = requests.get(position)
         holder.bind(request)
         holder.onClick(request)
