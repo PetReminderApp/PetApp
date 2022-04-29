@@ -69,7 +69,8 @@ class SocialFragmentAdapter(val context: Context, val requests: ArrayList<Friend
 
         fun onClick(request: Friend) {
             buttonShare.setOnClickListener {
-                Log.i(TAG, "accepted friend request")
+                Log.i(TAG, "clicked button")
+                //request.setSharedPets()
 
             }
 
