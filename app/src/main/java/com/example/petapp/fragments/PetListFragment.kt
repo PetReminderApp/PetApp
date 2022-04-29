@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.petapp.adapters.PetAdapter
 import com.example.petapp.R
+import com.example.petapp.adapters.PetAdapter
 import com.example.petapp.models.Pet
+import com.example.petapp.models.getPets
+import com.example.petapp.util.ParseUtil
 import com.parse.FindCallback
 import com.parse.ParseException
 import com.parse.ParseQuery
+import com.parse.ParseUser
 
 class PetListFragment : Fragment() {
 
@@ -45,35 +48,14 @@ class PetListFragment : Fragment() {
     }
 
     open fun queryPets() {
+        ParseUtil.queryPets { pet ->
+            userPets.add(pet)
+            Log.i(TAG, "queryPets: added pet ${pet.getName()}")
+            adapter.notifyItemInserted(userPets.size)
+        }
 
-        val query: ParseQuery<Pet> = ParseQuery.getQuery(Pet::class.java)
 
-        query.include(Pet.KEY_NAME)
-        query.addDescendingOrder("createdAt")
-        query.findInBackground(object : FindCallback<Pet> {
-            override fun done(pets: MutableList<Pet>?, e: ParseException?) {
 
-                if (e != null) {
-
-                    // something went wrong
-                    Log.e(TAG, "Error fetching posts")
-                } else {
-                    if (pets != null) {
-                        for (pet in pets) {
-
-                            Log.i(
-                                TAG,
-                                "Name: " + pet.getName() + " , Description: " + pet.getDescription()
-                            )
-                        }
-
-                        userPets.addAll(pets)
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-            }
-
-        })
     }
 
     companion object {
