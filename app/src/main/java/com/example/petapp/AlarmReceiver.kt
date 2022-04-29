@@ -109,8 +109,8 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     companion object {
-        val channelId = "channelId"
-        val channelName = "channelName"
+        const val channelId = "channelId"
+        const val channelName = "Task Reminders"
         const val TAG = "AlarmReceiver"
     }
 }
