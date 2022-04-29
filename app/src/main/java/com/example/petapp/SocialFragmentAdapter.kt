@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.petapp.fragments.CreateFriendRequest
 import com.example.petapp.models.Friend
+import com.example.petapp.models.getPets
+import com.parse.Parse
 import com.parse.ParseUser
 import java.util.*
 import kotlin.collections.ArrayList
@@ -45,41 +49,48 @@ class SocialFragmentAdapter(val context: Context, val requests: ArrayList<Friend
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvFriendName: TextView
         val buttonShare: Button
-
+        val petName: EditText
 
 
         init {
             tvFriendName = itemView.findViewById(R.id.friendNameTV)
             buttonShare = itemView.findViewById(R.id.sharePetBtn)
-
+            petName = itemView.findViewById(R.id.petNameEdit)
 
         }
 
         fun bind(request: Friend) {
-            if(request.getFriend1() != ParseUser.getCurrentUser()) {
+            if (request.getFriend1() != ParseUser.getCurrentUser()) {
                 tvFriendName.text = request.getFriend2()?.username
-            }
-            else{
+            } else {
                 tvFriendName.text = request.getFriend1()?.username
             }
         }
 
         fun onClick(request: Friend) {
             buttonShare.setOnClickListener {
-                Log.i(TAG, "clicked button")
-                //request.setSharedPets()
+                Log.i(TAG, "clicked share button")
+                val petlist = ParseUser.getCurrentUser().getPets()
+                if (petlist != null) {
+                    for (pet in petlist) {
+                        if (pet.getName() == petName.text.toString())
+                        {
+                            request.put("sharedpets", petName.text.toString())
+                            request.save()
+                            Log.i(TAG, "added shared pet")
+                        }
+                    }
+
+               }
+
 
             }
-
-
-
-
-
         }
     }
+
 
 
 
