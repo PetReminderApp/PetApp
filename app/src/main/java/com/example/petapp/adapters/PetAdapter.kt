@@ -18,14 +18,13 @@ import com.example.petapp.models.Pet
 import com.example.petapp.models.Task
 
 
-class PetAdapter(val context : Context, val pets: List<Pet>)
+class PetAdapter(val context : Context, private val pets: List<Pet>)
     : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.pet_list,parent,false)
-
 
         return ViewHolder(view)
     }
