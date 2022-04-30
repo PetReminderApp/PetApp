@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.petapp.adapters.FriendRequestAdapter
 import com.example.petapp.R
@@ -57,7 +58,7 @@ class CreateFriendRequest : Fragment() {
                                         Log.e(FriendRequestAdapter.TAG, "Error while saving FR")
                                         exception.printStackTrace()
                                         //TODO: show a toast
-                                        //Toast.makeText(requireContext(), "Friend added successfully!", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(Parse.getApplicationContext(), "Friend added successfully!", Toast.LENGTH_SHORT).show()
                                     } else {
                                         Log.i(FriendRequestAdapter.TAG, "Successfully save FR")
                                         //TODO: Reset edit text and image
