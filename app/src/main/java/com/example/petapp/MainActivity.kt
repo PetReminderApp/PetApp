@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_pets -> {
                     fragment = PetListFragment()
                 }
-
 //                R.id.action_compose -> {
 //                    fragment = ComposeFragment()
 //                }

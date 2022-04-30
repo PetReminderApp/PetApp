@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import com.example.petapp.FriendRequestAdapter
+import com.example.petapp.adapters.FriendRequestAdapter
 import com.example.petapp.R
 import com.example.petapp.models.FriendRequest
 import com.parse.*
