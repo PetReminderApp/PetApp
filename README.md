@@ -10,6 +10,9 @@ Original App Design Project - README Template
 2. [Schema](#Schema)
 
 ## Overview
+### Gif Walkthrough
+![gif](https://thumbs.gfycat.com/FlippantFrenchConey-size_restricted.gif)
+
 ### Description
 This app helps people take care of their pets by giving reminders for certain tasks they need to complete such as walking the dog or refilling the water bowl. 
 Users can also collaborate on caregiving for a pet, allowing users to see when another caregiver has completed a task for the pet.
