@@ -48,11 +48,11 @@ class PetListFragment : Fragment() {
     }
 
     open fun queryPets() {
-        ParseUtil.queryPets { pet ->
+        ParseUtil.queryPets({ pet ->
             userPets.add(pet)
             Log.i(TAG, "queryPets: added pet ${pet.getName()}")
             adapter.notifyItemInserted(userPets.size)
-        }
+        })
 
 
 
