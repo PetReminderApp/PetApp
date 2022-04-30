@@ -10,11 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.example.petapp.fragments.AddPetFragment
-import com.example.petapp.fragments.HomeFragment
-import com.example.petapp.fragments.PetListFragment
-import com.example.petapp.fragments.TaskComposeFragment
-import com.example.petapp.fragments.SocialFragment
+import com.example.petapp.fragments.*
 import com.example.petapp.models.getPets
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -56,15 +52,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_pets -> {
                     fragment = PetListFragment()
                 }
-//                R.id.action_compose -> {
-//                    fragment = ComposeFragment()
-//                }
-//                R.id.action_profile -> {
-//                    fragment = ProfileFragment()
-//                }
-           //     R.id.action_chat ->{
-             //       fragment=AddPetFragment()
-            //    }
+                R.id.action_settings -> {
+                    fragment = SettingsFragment()
+                }
             }
 
             if (fragment != null) {
