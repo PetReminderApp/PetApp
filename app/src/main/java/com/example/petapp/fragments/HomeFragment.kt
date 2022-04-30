@@ -86,21 +86,25 @@ class HomeFragment : Fragment() {
 
     //Query for posts in our server
     private fun queryTasks() {
-        ParseUtil.queryPets { pet ->
-            //iterate over task pointers and append to tasks
-            ParseUtil.queryPetTasks(
-                pet,
-                callback = { task ->
-                    if (task.getCompleted() == false) {
-                        tasks.add(task)
-                        adapter.notifyItemInserted(tasks.size)
+        ParseUtil.queryPets(
+            callback = { pet ->
+                //iterate over task pointers and append to tasks
+                ParseUtil.queryPetTasks(
+                    pet,
+                    callback = { task ->
+                        if (task.getCompleted() == false) {
+                            tasks.add(task)
+                            adapter.notifyItemInserted(tasks.size)
+                        }
+                    },
+                    onTasksDone = {
+                        loadingDialog.visibility = View.GONE
                     }
-                },
-                onTasksDone = {
-                    loadingDialog.visibility = View.GONE
-                }
-            )
-        }
+                )
+            }, onQueryDone = {
+                loadingDialog.visibility = View.GONE
+            }
+        )
     }
 
 }

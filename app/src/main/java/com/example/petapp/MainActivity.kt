@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -14,9 +15,11 @@ import com.example.petapp.fragments.HomeFragment
 import com.example.petapp.fragments.PetListFragment
 import com.example.petapp.fragments.TaskComposeFragment
 import com.example.petapp.fragments.SocialFragment
+import com.example.petapp.models.getPets
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.parse.ParseUser
 
 private const val TAG = "MainActivity"
 
@@ -90,7 +93,12 @@ class MainActivity : AppCompatActivity() {
         //todo navigate to Task Compose Screen
         addTask?.setOnClickListener {
             Log.d(TAG, "Clicked Add Task")
-            //todo verify user has a Pet already
+            //If User has no Pets, return. Tasks must be added onto a Pet
+            val userPets = ParseUser.getCurrentUser().getPets()
+            if (userPets == null || userPets.isEmpty()) {
+                Toast.makeText(this, "You must create a Pet first", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             fragmentManager
                 .beginTransaction()
