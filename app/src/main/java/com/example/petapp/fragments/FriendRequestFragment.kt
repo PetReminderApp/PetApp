@@ -39,6 +39,17 @@ class FriendRequestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // This is where we set up our views and click listeners
+        val onLongClickListener = object : FriendRequestAdapter.buttonListener {
+            override fun onItemClicked(position: Int) {
+                // 1. Remove the item from the list
+                allPosts.removeAt(position)
+                // 2. Notify the adapter that our dataset was changed
+                adapter.notifyDataSetChanged()
+
+
+            }
+
+        }
 
         // Inflate the layout for this fragment
         swipeContainer = requireView().findViewById(R.id.swipeContainer)
@@ -62,7 +73,7 @@ class FriendRequestFragment : Fragment() {
         // 2. Create data source for each row (this is the Post class)
         // 3. Create adapter that will bridge data and row layout (PostAdapter)
         // 4. Set adapter on RecyclerView
-        adapter = FriendRequestAdapter(requireContext(), allPosts as ArrayList<FriendRequest>)
+        adapter = FriendRequestAdapter(requireContext(), allPosts as ArrayList<FriendRequest>, onLongClickListener)
         socialRecyclerView.adapter = adapter
 
         // 5. Set layout manager on RecyclerView
@@ -83,6 +94,8 @@ class FriendRequestFragment : Fragment() {
 
     // Query for all posts in our server
     open fun queryPosts() {
+
+
         // Specify which class to query
         val query: ParseQuery<FriendRequest> = ParseQuery.getQuery(FriendRequest::class.java)
         // Find all Post objects

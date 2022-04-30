@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petapp.fragments.CreateFriendRequest
 import com.example.petapp.models.Friend
+import com.example.petapp.models.Pet
 import com.example.petapp.models.getPets
 import com.parse.Parse
+import com.parse.Parse.getApplicationContext
 import com.parse.ParseUser
 import java.util.*
 import kotlin.collections.ArrayList
@@ -73,19 +76,28 @@ class SocialFragmentAdapter(val context: Context, val requests: ArrayList<Friend
         fun onClick(request: Friend) {
             buttonShare.setOnClickListener {
                 Log.i(TAG, "clicked share button")
+
                 val petlist = ParseUser.getCurrentUser().getPets()
                 if (petlist != null) {
                     for (pet in petlist) {
-                        if (pet.getName() == petName.text.toString())
+                        if (pet.fetchIfNeeded<Pet>().getName() == petName.text.toString())
                         {
-                            request.put("sharedpets", petName.text.toString())
+                            var array = request.getSharedPets()
+                            if (array != null) {
+                                array = array?.plus(pet)
+                            }
+                            else{
+                                array = listOf(pet)
+                            }
+                            request.put("sharedpets", array)
                             request.save()
                             Log.i(TAG, "added shared pet")
                         }
                     }
 
                }
-
+                Toast.makeText(getApplicationContext(), "Added shared pet!", Toast.LENGTH_SHORT).show()
+                petName.text.clear()
 
             }
         }

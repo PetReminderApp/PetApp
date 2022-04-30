@@ -14,8 +14,13 @@ import com.example.petapp.models.FriendRequest
 import com.parse.ParseUser
 import kotlin.collections.ArrayList
 
-class FriendRequestAdapter(val context: Context, val requests: ArrayList<FriendRequest>)
+class FriendRequestAdapter(val context: Context, val requests: ArrayList<FriendRequest>, val clickListener: buttonListener)
     : RecyclerView.Adapter<FriendRequestAdapter.ViewHolder>() {
+
+    interface buttonListener {
+        fun onItemClicked(position: Int)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Specify the layout file to use for this item
 
@@ -46,7 +51,7 @@ class FriendRequestAdapter(val context: Context, val requests: ArrayList<FriendR
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvSender: TextView
         val buttonAccept: Button
         val buttonDecline: Button
@@ -90,6 +95,8 @@ class FriendRequestAdapter(val context: Context, val requests: ArrayList<FriendR
                 }
                 request.setStatus("accepted")
                 request.save()
+                clickListener.onItemClicked(adapterPosition)
+                true
             }
 
 
@@ -99,6 +106,8 @@ class FriendRequestAdapter(val context: Context, val requests: ArrayList<FriendR
                     Log.i(TAG, "declined friend request")
                     request.setStatus("declined")
                     request.save()
+                    clickListener.onItemClicked(adapterPosition)
+                    true
                 }
             }
         }
