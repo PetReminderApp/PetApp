@@ -30,7 +30,7 @@ class AlarmReceiver : BroadcastReceiver() {
         //unique ID for each notification
         var notificationId = 0
 
-        ParseUtil.queryPets { pet ->
+        ParseUtil.queryPets(callback = { pet ->
             ParseUtil.queryPetTasks(
                 pet,
                 callback = { task ->
@@ -54,7 +54,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 },
                 {}
             )
-        }
+        })
     }
 
     private fun getHourDifference(reminderTime: String, currentTime: String): Int {

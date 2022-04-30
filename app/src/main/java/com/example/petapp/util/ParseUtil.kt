@@ -20,7 +20,7 @@ object ParseUtil {
         onTasksDone()
     }
 
-    fun queryPets(callback: (Pet) -> Unit) {
+    fun queryPets(callback: (Pet) -> Unit, onQueryDone: () -> Unit = {}) {
         //object ID of currently signed in User
         val userObjId = ParseUser.getCurrentUser().objectId
 
@@ -42,8 +42,10 @@ object ParseUtil {
                     userPetsPointers?.forEach { pet ->
                         callback(pet.fetchIfNeeded())
                     }
+
                 }
             }
+            onQueryDone()
         }
     }
 }

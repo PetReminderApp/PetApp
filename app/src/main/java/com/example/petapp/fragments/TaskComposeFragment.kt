@@ -180,14 +180,14 @@ class TaskComposeFragment : Fragment() {
         arrayAdapter = ArrayAdapter(requireContext(), simple_spinner_item, petNames)
 
         //populates userPets, petNames, and the arrayAdapter
-        ParseUtil.queryPets { pet ->
+        ParseUtil.queryPets ({ pet ->
             pet.getName()?.let {
                 Log.d(TAG, "Adding $it to petNames")
                 userPets.add(pet)
                 petNames.add(it)
                 arrayAdapter.notifyDataSetChanged()
             }
-        }
+        })
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spPets.adapter = arrayAdapter
     }
