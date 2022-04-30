@@ -18,7 +18,10 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.example.petapp.R
 import com.example.petapp.models.Pet
+import com.example.petapp.models.getPets
+import com.example.petapp.models.setPets
 import com.parse.ParseFile
+import com.parse.ParseUser
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -94,6 +97,7 @@ class AddPetFragment : Fragment() {
                 exception.printStackTrace()
                 Toast.makeText(requireContext(),"Something went wrong with saving this pet", Toast.LENGTH_SHORT).show()
             }else {
+                savePetToUser(pet)
                 Toast.makeText(requireContext(),"Pet Saved", Toast.LENGTH_SHORT).show()
                 activity?.supportFragmentManager?.popBackStack()
             }
@@ -103,6 +107,20 @@ class AddPetFragment : Fragment() {
 
         //
     }
+
+    private fun savePetToUser(pet: Pet) {
+        //get list of pets for current User
+        val userPets = ParseUser.getCurrentUser().getPets()?.toMutableList()
+        //add new Pet to list of Pets
+        userPets?.add(pet)
+
+        //Save the new List of Pets into User
+        ParseUser.getCurrentUser().setPets(userPets?.toList() ?: listOf(pet))
+
+        //Save updated User to Parse Server
+        ParseUser.getCurrentUser().saveInBackground()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, imageReturnedIntent: Intent?) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent)
         when (requestCode) {
