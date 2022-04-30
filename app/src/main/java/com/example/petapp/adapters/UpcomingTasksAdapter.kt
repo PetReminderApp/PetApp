@@ -56,11 +56,11 @@ class UpcomingTasksAdapter(
         val tvPetName: TextView
 
         fun bind(task: Task) {
-            val dateFormat = SimpleDateFormat("MMMM dd hh:mm a")
-            val formattedTime = dateFormat.format(task.getTime())
+//            val dateFormat = SimpleDateFormat("MMMM dd hh:mm a")
+//            val formattedTime = dateFormat.format(task.getTime())
 
             tvTaskTitle.text = task.getTitle()
-            tvDeadlineTime.text = formattedTime
+            tvDeadlineTime.text = task.getReminderTime()
             tvPetName.text = task.getPet()?.get(Pet.KEY_NAME).toString()
 
             Glide.with(itemView.context)
